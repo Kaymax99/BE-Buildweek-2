@@ -17,7 +17,7 @@ import com.github.javafaker.Faker;
 public class ClientConfiguration {	
 	
 	
-	@Bean("ClientBean")
+	@Bean("FakeClientBean")
 	@Scope("prototype")
 	public Cliente newClient() {
 		Faker fake = Faker.instance(new Locale("it-IT"));
@@ -28,7 +28,7 @@ public class ClientConfiguration {
 				.partita_iva(1234567890l)
 				.data_inserimento(LocalDate.now())
 				.data_ultimo_contratto(LocalDate.now())
-				.fatturato_annuale(1234567890l)
+				.fatturato_annuale(1234567890d)
 				.pec(fake.internet().emailAddress())
 				.email(fake.internet().emailAddress())
 				.telefono(1234567890l)

@@ -4,8 +4,10 @@ package com.BEBuildweek2.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,22 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.service.ClientService;
 
-
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
+@RequestMapping("/clients")
 public class ClientController {
-	
-	
-
-
-
-	@RestController
-	@RequestMapping("/clients")
-	public class UserController {
 		
-		@Autowired ClientService clientService;
+		@Autowired 
+		ClientService clientService;
 		
 		@GetMapping
-		public ResponseEntity<?> getAllClients(){
-			return new ResponseEntity<List<Cliente>>(clientService.getAllUser(), HttpStatus.OK);
+		public ResponseEntity<?> getAllClienti(Pageable pageable){
+			return new ResponseEntity<>(clientService.findAllClienti(pageable), HttpStatus.OK);
 		}
 		
 		@GetMapping("/{id}")
@@ -57,12 +54,11 @@ public class ClientController {
 		@PutMapping("/{id}")
 		public ResponseEntity<?> updateUser(@RequestBody Cliente client) {
 			return new ResponseEntity<Cliente>(clientService.updateClient(client), HttpStatus.CREATED);
-
 		}
-		
 
-	}
-
-
+		@GetMapping(path = "/{pec}")
+		public ResponseEntity<?> getByPec(@PathVariable(name = "pec") String pec, Pageable pageable) {
+			return new ResponseEntity<>(clientService.findByPec(pec, pageable), HttpStatus.OK);
+		}
 }
 

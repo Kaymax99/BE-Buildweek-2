@@ -39,7 +39,7 @@ import lombok.NoArgsConstructor;
 		
 		private LocalDate data_ultimo_contratto;
 
-		private Long fatturato_annuale;
+		private Double fatturato_annuale;
 
 		private String pec;
 

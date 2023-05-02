@@ -3,6 +3,8 @@ package com.BEBuildweek2.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.BEBuildweek2.model.Cliente;
@@ -17,8 +19,8 @@ public class ClientService {
 	
 	@Autowired ClientDaoRepository repo;
 
-	public List<Cliente> getAllUser() {
-		return (List<Cliente>) repo.findAll();
+	public Page<Cliente> findAllClienti(Pageable pageable) {
+		return (Page<Cliente>) repo.findAll(pageable);
 	}
 	
 	public Cliente getUser(Long id) {
@@ -51,7 +53,13 @@ public class ClientService {
 		}
 		repo.save(client);
 		return client;
+		
 	}
-
-
+//	public Page<Cliente> findByFatturato_Annuale(double d, Pageable pageable){
+//		return repo.findByFatturato_Annuale(d, pageable);
+//	}
+	
+	public Page<Cliente> findByPec(String pec, Pageable pageable){
+		return repo.findByPec(pec, pageable);
+	}
 }
