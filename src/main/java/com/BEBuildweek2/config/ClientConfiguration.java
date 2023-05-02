@@ -17,9 +17,9 @@ import com.github.javafaker.Faker;
 public class ClientConfiguration {	
 	
 	
-	@Bean("ClientBean")
+	@Bean("AddressBean")
 	@Scope("prototype")
-	public Client newClient() {
+	public Client newAddress() {
 		Faker fake = Faker.instance(new Locale("it-IT"));
 
 		return Client.builder()
