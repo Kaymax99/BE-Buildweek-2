@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.BEBuildweek2.model.Address;
-import com.BEBuildweek2.model.Client;
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.repository.AddressDaoRepository;
 
 import jakarta.persistence.EntityExistsException;
@@ -30,7 +30,7 @@ public class AddressService {
 	}
 	
 	
-	public void addAddress(Client client, Address address) {
+	public void addAddress(Cliente client, Address address) {
 	    if (client.getAddresses().size() < 2) {
 	        address.setClient(client);
 	        client.getAddresses().add(address);

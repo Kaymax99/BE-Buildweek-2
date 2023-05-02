@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.BEBuildweek2.model.Client;
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.service.ClientService;
 
 
@@ -33,18 +33,18 @@ public class ClientController {
 		
 		@GetMapping
 		public ResponseEntity<?> getAllClients(){
-			return new ResponseEntity<List<Client>>(clientService.getAllUser(), HttpStatus.OK);
+			return new ResponseEntity<List<Cliente>>(clientService.getAllUser(), HttpStatus.OK);
 		}
 		
 		@GetMapping("/{id}")
 		public ResponseEntity<?> getClient(@PathVariable Long id){
-			return new ResponseEntity<Client>(clientService.getUser(id), HttpStatus.OK);
+			return new ResponseEntity<Cliente>(clientService.getUser(id), HttpStatus.OK);
 
 		}
 		
 		@PostMapping
-		public ResponseEntity<?> createClient(@RequestBody Client client) {
-			return new ResponseEntity<Client>(clientService.createClient(client), HttpStatus.CREATED);
+		public ResponseEntity<?> createClient(@RequestBody Cliente client) {
+			return new ResponseEntity<Cliente>(clientService.createClient(client), HttpStatus.CREATED);
 
 		}
 		
@@ -55,8 +55,8 @@ public class ClientController {
 		}
 		
 		@PutMapping("/{id}")
-		public ResponseEntity<?> updateUser(@RequestBody Client client) {
-			return new ResponseEntity<Client>(clientService.updateClient(client), HttpStatus.CREATED);
+		public ResponseEntity<?> updateUser(@RequestBody Cliente client) {
+			return new ResponseEntity<Cliente>(clientService.updateClient(client), HttpStatus.CREATED);
 
 		}
 		

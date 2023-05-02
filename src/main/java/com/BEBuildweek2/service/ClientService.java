@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.BEBuildweek2.model.Client;
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.repository.ClientDaoRepository;
 
 import jakarta.persistence.EntityExistsException;
@@ -17,18 +17,18 @@ public class ClientService {
 	
 	@Autowired ClientDaoRepository repo;
 
-	public List<Client> getAllUser() {
-		return (List<Client>) repo.findAll();
+	public List<Cliente> getAllUser() {
+		return (List<Cliente>) repo.findAll();
 	}
 	
-	public Client getUser(Long id) {
+	public Cliente getUser(Long id) {
 		if(!repo.existsById(id)) {
 			throw new EntityNotFoundException("User not exists!!!");
 		}
 		return repo.findById(id).get();
 	}
 	
-	public Client createClient(Client client) {
+	public Cliente createClient(Cliente client) {
 		if(repo.existsByEmail(client.getEmail())) {
 			throw new EntityExistsException("Email exists!!!");
 		} else {
@@ -45,7 +45,7 @@ public class ClientService {
 		return "Client Deleted!!!";
 	}
 	
-	public Client updateClient(Client client) {
+	public Cliente updateClient(Cliente client) {
 		if(!repo.existsById(client.getId())) {
 			throw new EntityExistsException("Client not exists!!!");
 		}

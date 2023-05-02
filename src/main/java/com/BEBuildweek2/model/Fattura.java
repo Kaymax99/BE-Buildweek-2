@@ -3,9 +3,8 @@ package com.BEBuildweek2.model;
 import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -20,21 +19,18 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table
-public class Be_service_fatture_model implements Serializable {
+@Table(name = "be_service_fatture")
+public class Fattura implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@ManyToOne 
-	private Be_service_clienti be_service_clienti;
-	@Column(name="id_fattura")
 	private long id;
-	@Column(nullable = false)
+	
+	@ManyToOne 
+	private Cliente clienti;
+
 	private int anno;
-	@Column(nullable = false)
 	private Date data;
-	@Column(nullable = false)
 	private double importo;
-	@Column(nullable = false)
 	private long numero;
 	
 	
