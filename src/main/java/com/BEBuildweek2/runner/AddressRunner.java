@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.BEBuildweek2.model.Address;
 import com.BEBuildweek2.service.AddressService;
-import com.BEBuildweek2.model.Client;
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.service.ClientService;
 
 
@@ -27,7 +27,7 @@ public class AddressRunner implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 		System.out.println("Run...");
 		
-		addressService.addAddress(addressBeanProvider.getObject());
+//		addressService.addAddress(addressBeanProvider.getObject());
 	}
 
 }

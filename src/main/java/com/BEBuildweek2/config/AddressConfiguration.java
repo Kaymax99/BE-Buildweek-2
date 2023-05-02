@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import com.BEBuildweek2.model.Address;
-import com.BEBuildweek2.model.Client;
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.model.CustomerType;
 import com.github.javafaker.Faker;
 
@@ -17,7 +17,7 @@ import com.github.javafaker.Faker;
 public class AddressConfiguration {	
 	
 	
-	@Bean("AddressBean")
+	@Bean("FakeAddressBean")
 	@Scope("prototype")
 	public Address newClient() {
 		Faker fake = Faker.instance(new Locale("it-IT"));

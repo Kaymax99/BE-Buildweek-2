@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.BEBuildweek2.model.Client;
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.repository.ClientDaoRepository;
 
 import jakarta.persistence.EntityExistsException;
@@ -19,18 +19,18 @@ public class ClientService {
 	
 	@Autowired ClientDaoRepository repo;
 
-	public List<Client> getAllUser() {
-		return (List<Client>) repo.findAll();
+	public Page<Cliente> findAllClienti(Pageable pageable) {
+		return (Page<Cliente>) repo.findAll(pageable);
 	}
 	
-	public Client getUser(Long id) {
+	public Cliente getUser(Long id) {
 		if(!repo.existsById(id)) {
 			throw new EntityNotFoundException("User not exists!!!");
 		}
 		return repo.findById(id).get();
 	}
 	
-	public Client createClient(Client client) {
+	public Cliente createClient(Cliente client) {
 		if(repo.existsByEmail(client.getEmail())) {
 			throw new EntityExistsException("Email exists!!!");
 		} else {
@@ -47,7 +47,7 @@ public class ClientService {
 		return "Client Deleted!!!";
 	}
 	
-	public Client updateClient(Client client) {
+	public Cliente updateClient(Cliente client) {
 		if(!repo.existsById(client.getId())) {
 			throw new EntityExistsException("Client not exists!!!");
 		}
@@ -55,7 +55,11 @@ public class ClientService {
 		return client;
 		
 	}
-	public Page<Cliente> findByFatturato_annuale(double d, Pageable pageable){
-		return repo.findByFatturato_annuale(d, pageable);
+//	public Page<Cliente> findByFatturato_Annuale(double d, Pageable pageable){
+//		return repo.findByFatturato_Annuale(d, pageable);
+//	}
+	
+	public Page<Cliente> findByPec(String pec, Pageable pageable){
+		return repo.findByPec(pec, pageable);
 	}
 }

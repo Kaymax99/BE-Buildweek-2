@@ -41,6 +41,6 @@ public class Address {
 	private String comune;
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
-    private Client client;
+    private Cliente client;
 
 }

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 
-import com.BEBuildweek2.model.Client;
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.model.CustomerType;
 import com.github.javafaker.Faker;
 
@@ -17,18 +17,18 @@ import com.github.javafaker.Faker;
 public class ClientConfiguration {	
 	
 	
-	@Bean("AddressBean")
+	@Bean("FakeClientBean")
 	@Scope("prototype")
-	public Client newAddress() {
+	public Cliente newAddress() {
 		Faker fake = Faker.instance(new Locale("it-IT"));
 
-		return Client.builder()
+		return Cliente.builder()
 				.ragione_sociale("Ragione sociale")
 				.tipo_cliente(CustomerType.PA)
 				.partita_iva(1234567890l)
 				.data_inserimento(LocalDate.now())
 				.data_ultimo_contratto(LocalDate.now())
-				.fatturato_annuale(1234567890l)
+				.fatturato_annuale(1234567890d)
 				.pec(fake.internet().emailAddress())
 				.email(fake.internet().emailAddress())
 				.telefono(1234567890l)
@@ -41,8 +41,8 @@ public class ClientConfiguration {
 	
 	@Bean("ClientBean")
 	@Scope("prototype")
-	public Client newCustomClient() {
-		return new Client();
+	public Cliente newCustomClient() {
+		return new Cliente();
 	}
 
 }

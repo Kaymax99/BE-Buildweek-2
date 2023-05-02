@@ -7,7 +7,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import com.BEBuildweek2.model.Client;
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.service.ClientService;
 
 
@@ -15,7 +15,7 @@ import com.BEBuildweek2.service.ClientService;
 public class ClientRunner implements ApplicationRunner {
 	
 	
-	@Autowired @Qualifier("ClientBean") ObjectProvider<Client> clientBeanProvider;
+	@Autowired @Qualifier("ClientBean") ObjectProvider<Cliente> clientBeanProvider;
 	
 	@Autowired ClientService clientService;
 	
@@ -23,7 +23,7 @@ public class ClientRunner implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 		System.out.println("Run...");
 		
-		clientService.createClient(clientBeanProvider.getObject());
+//		clientService.createClient(clientBeanProvider.getObject());
 	}
 
 }
