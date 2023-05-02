@@ -25,7 +25,7 @@ public class AddressRunner implements ApplicationRunner {
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		System.out.println("Run...");
+		System.out.println("Address Running...");
 		
 //		addressService.addAddress(addressBeanProvider.getObject());
 	}

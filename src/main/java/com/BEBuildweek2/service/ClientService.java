@@ -2,7 +2,9 @@ package com.BEBuildweek2.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,25 +14,34 @@ import com.BEBuildweek2.repository.ClientDaoRepository;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
-
+@Slf4j
 public class ClientService {
 	
 	@Autowired ClientDaoRepository repo;
+	
+	 @Autowired @Qualifier("FakeClient") private ObjectProvider<Cliente> fakeProvider;
+	
+	public void saveFakeClient() {
+		Cliente c = fakeProvider.getObject();
+		saveClient(c);
+		log.info("Fake user succesfully created!");
+	}
 
 	public Page<Cliente> findAllClienti(Pageable pageable) {
 		return (Page<Cliente>) repo.findAll(pageable);
 	}
 	
-	public Cliente getUser(Long id) {
+	public Cliente findById(Long id) {
 		if(!repo.existsById(id)) {
 			throw new EntityNotFoundException("User not exists!!!");
 		}
 		return repo.findById(id).get();
 	}
 	
-	public Cliente createClient(Cliente client) {
+	public Cliente saveClient(Cliente client) {
 		if(repo.existsByEmail(client.getEmail())) {
 			throw new EntityExistsException("Email exists!!!");
 		} else {
@@ -53,7 +64,6 @@ public class ClientService {
 		}
 		repo.save(client);
 		return client;
-		
 	}
 //	public Page<Cliente> findByFatturato_Annuale(double d, Pageable pageable){
 //		return repo.findByFatturato_Annuale(d, pageable);
