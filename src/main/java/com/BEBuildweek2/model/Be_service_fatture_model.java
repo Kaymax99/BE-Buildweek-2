@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,9 +21,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table
-public class be_service_fatture implements Serializable {
+public class Be_service_fatture_model implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ManyToOne 
+	private Be_service_clienti be_service_clienti;
 	@Column(name="id_fattura")
 	private long id;
 	@Column(nullable = false)
