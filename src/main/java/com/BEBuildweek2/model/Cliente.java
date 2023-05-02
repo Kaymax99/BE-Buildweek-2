@@ -7,10 +7,13 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,30 +31,27 @@ import lombok.NoArgsConstructor;
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
-
-		private String ragione_sociale;
-	
-		private CustomerType tipo_cliente;
-
-		private Long partita_iva;
-
-		private LocalDate data_inserimento;
 		
-		private LocalDate data_ultimo_contratto;
-
-		private Double fatturato_annuale;
-
-		private String pec;
-
+		private String cognome_contatto;
+		private LocalDate data_inserimento;
+		private LocalDate data_ultimo_contatto;
 		private String email;
-
-		private Long telefono;
-	
-		private String nome;
-	
-		private String cognome;
-		@OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-		private List<Address> addresses = new ArrayList<>();
+	    private String email_contatto;
+	    private Double fatturato_annuale;
+	    private String nome_contatto;
+	    private String partita_iva;
+	    private String pec;
+	    private String ragione_sociale;
+	    private String telefono;
+	    private String telefono_contatto;
+	    
+	    @Enumerated(EnumType.STRING)
+	    private CustomerType tipo_cliente;
+	    
+	    @OneToOne
+	    private Address indirizzo_sede_legale;
+	    @OneToOne
+	    private Address indirizzo_sede_operativa;
 
 	}
 

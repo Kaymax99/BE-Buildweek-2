@@ -30,14 +30,14 @@ public class AddressService {
 	}
 	
 	
-	public void addAddress(Cliente client, Address address) {
-	    if (client.getAddresses().size() < 2) {
-	        address.setClient(client);
-	        client.getAddresses().add(address);
-	    } else {
-	        throw new RuntimeException("Client already has two addresses");
-	    }
-	}
+//	public void addAddress(Cliente client, Address address) {
+//	    if (client.getAddresses().size() < 2) {
+//	        address.setClient(client);
+//	        client.getAddresses().add(address);
+//	    } else {
+//	        throw new RuntimeException("Client already has two addresses");
+//	    }
+//	}
 
 	
 	public String removeAddress(Long id) {
