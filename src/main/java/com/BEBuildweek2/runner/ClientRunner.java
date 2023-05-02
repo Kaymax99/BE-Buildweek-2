@@ -22,7 +22,7 @@ public class ClientRunner implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		System.out.println("Run...");
-		clientService.createClient(clientBeanProvider.getIfAvailable());
+		clientService.createClient(clientBeanProvider.getObject());
 	}
 
 }

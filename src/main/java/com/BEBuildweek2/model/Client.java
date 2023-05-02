@@ -13,7 +13,7 @@ import jakarta.persistence.Column;
 	import lombok.NoArgsConstructor;
 
 	@Entity
-	@Table(name = "clients") 
+	@Table(name = "clienti") 
 	@NoArgsConstructor
 	@AllArgsConstructor
 	@Data
@@ -42,9 +42,9 @@ import jakarta.persistence.Column;
 		@Column(nullable = false)
 		private Long telefono;
 		@Column(nullable = false)
-		private String name;
+		private String nome;
 		@Column(nullable = false)
-		private String lastname;
+		private String cognome;
 
 	}
 
