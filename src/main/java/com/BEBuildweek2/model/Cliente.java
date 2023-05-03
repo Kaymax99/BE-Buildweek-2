@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +22,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 	@Entity
-	@Table(name = "be_service_clienti") 
+	@Table(name = "be_service_clienti")
 	@NoArgsConstructor
 	@AllArgsConstructor
 	@Data
@@ -31,28 +32,24 @@ import lombok.NoArgsConstructor;
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
-		
-		private String cognome_contatto;
-		private LocalDate data_inserimento;
-		private LocalDate data_ultimo_contatto;
+		private String cognome;
+		private LocalDate dataInserimento;
+		private LocalDate dataUltimoContatto;
 		private String email;
-	    private String email_contatto;
-	    private Double fatturato_annuale;
-	    private String nome_contatto;
-	    private String partita_iva;
+	    private String emailContatto;
+	    private Double fatturatoAnnuale;
+	    private String nome;
+	    private String partitaIva;
 	    private String pec;
-	    private String ragione_sociale;
+	    private String ragioneSociale;
 	    private String telefono;
-	    private String telefono_contatto;
-	    
+	    private String telefonoContatto;
 	    @Enumerated(EnumType.STRING)
-	    private CustomerType tipo_cliente;
-	    
+	    private CustomerType tipoCliente;
 	    @OneToOne
-	    private Address indirizzo_sede_legale;
+	    private Address indirizzoSedeLegale;
 	    @OneToOne
-	    private Address indirizzo_sede_operativa;
-
+	    private Address indirizzoSedeOperativa;
 	}
 
 

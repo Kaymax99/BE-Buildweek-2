@@ -93,32 +93,32 @@ class BeBuildweek2ApplicationTests {
 	public void testCliente() {
 		// Creazione di un cliente di prova
 		Cliente cliente = Cliente.builder()
-				.cognome_contatto("Rossi")
-				.nome_contatto("Mario")
-				.ragione_sociale("ABC s.r.l.")
-				.partita_iva("0123456789")
+				.cognome("Rossi")
+				.nome("Mario")
+				.ragioneSociale("ABC s.r.l.")
+				.partitaIva("0123456789")
 				.email("info@abc.it")
 				.telefono("0123456789")
-				.fatturato_annuale(100000.0)
-				.tipo_cliente(CustomerType.PA)
-				.indirizzo_sede_legale(new Address())
-				.indirizzo_sede_operativa(new Address())
-				.data_inserimento(LocalDate.now())
+				.fatturatoAnnuale(100000.0)
+				.tipoCliente(CustomerType.PA)
+				.indirizzoSedeLegale(new Address())
+				.indirizzoSedeOperativa(new Address())
+				.dataInserimento(LocalDate.now())
 				.build();
 		
 		// Verifica della corretta creazione del cliente
 		assertNotNull(cliente);
-		assertEquals("Rossi", cliente.getCognome_contatto());
-		assertEquals("Mario", cliente.getNome_contatto());
-		assertEquals("ABC s.r.l.", cliente.getRagione_sociale());
-		assertEquals("0123456789", cliente.getPartita_iva());
+		assertEquals("Rossi", cliente.getCognome());
+		assertEquals("Mario", cliente.getNome());
+		assertEquals("ABC s.r.l.", cliente.getRagioneSociale());
+		assertEquals("0123456789", cliente.getPartitaIva());
 		assertEquals("info@abc.it", cliente.getEmail());
 		assertEquals("0123456789", cliente.getTelefono());
 	
-		assertEquals(CustomerType.PA, cliente.getTipo_cliente());
-		assertNotNull(cliente.getIndirizzo_sede_legale());
-		assertNotNull(cliente.getIndirizzo_sede_operativa());
-		assertNotNull(cliente.getData_inserimento());
+		assertEquals(CustomerType.PA, cliente.getTipoCliente());
+		assertNotNull(cliente.getIndirizzoSedeLegale());
+		assertNotNull(cliente.getIndirizzoSedeOperativa());
+		assertNotNull(cliente.getDataInserimento());
 	}
 
     //Test per classe Fattura. 
@@ -129,7 +129,7 @@ class BeBuildweek2ApplicationTests {
 	public void testNewFattura() {
 		Cliente cliente = new Cliente();
 		cliente.setId(1L);
-		cliente.setRagione_sociale("Acme srl");
+		cliente.setRagioneSociale("Acme srl");
 		
 		Fattura fattura = Fattura.builder()
 				.clienti(cliente)
@@ -144,7 +144,7 @@ class BeBuildweek2ApplicationTests {
 		assertEquals(2023, fattura.getAnno());
 		assertEquals(1000.0, fattura.getImporto(), 0.001);
 		assertEquals(cliente.getId(), fattura.getClienti().getId());
-		assertEquals(cliente.getRagione_sociale(), fattura.getClienti().getRagione_sociale());
+		assertEquals(cliente.getRagioneSociale(), fattura.getClienti().getRagioneSociale());
 	}
     
     //Test per classe AddressDaoRepository
@@ -193,45 +193,45 @@ class BeBuildweek2ApplicationTests {
     @Test
     public void testSaveAndFind() {
         Cliente cliente = Cliente.builder()
-                .nome_contatto("Mario")
-                .cognome_contatto("Rossi")
+                .nome("Mario")
+                .cognome("Rossi")
                 .email("mario.rossi@example.com")
                 .pec("mario.rossi@example.com")
-                .data_inserimento(LocalDate.now())
+                .dataInserimento(LocalDate.now())
                 .build();
         cliente = clientDao.save(cliente);
         assertThat(cliente.getId()).isNotNull();
 
         Cliente found = clientDao.findById(cliente.getId()).orElse(null);
         assertThat(found).isNotNull();
-        assertThat(found.getNome_contatto()).isEqualTo(cliente.getNome_contatto());
+        assertThat(found.getNome()).isEqualTo(cliente.getNome());
     }
 
     @Test
     public void testFindByEmail() {
         Cliente cliente = Cliente.builder()
-                .nome_contatto("Luigi")
-                .cognome_contatto("Bianchi")
+                .nome("Luigi")
+                .cognome("Bianchi")
                 .email("luigi.bianchi@example.com")
                 .pec("luigi.bianchi@example.com")
-                .data_inserimento(LocalDate.now().minusDays(1))
+                .dataInserimento(LocalDate.now().minusDays(1))
                 .build();
         cliente = clientDao.save(cliente);
         assertThat(cliente.getId()).isNotNull();
 
         Cliente found = clientDao.findByEmail("luigi.bianchi@example.com");
         assertThat(found).isNotNull();
-        assertThat(found.getCognome_contatto()).isEqualTo(cliente.getCognome_contatto());
+        assertThat(found.getCognome()).isEqualTo(cliente.getCognome());
     }
 
     @Test
     public void testFindByPec() {
         Cliente cliente = Cliente.builder()
-                .nome_contatto("Giovanni")
-                .cognome_contatto("Verdi")
+                .nome("Giovanni")
+                .cognome("Verdi")
                 .email("giovanni.verdi@example.com")
                 .pec("giovanni.verdi@example.com")
-                .data_inserimento(LocalDate.now().minusDays(2))
+                .dataInserimento(LocalDate.now().minusDays(2))
                 .build();
         cliente = clientDao.save(cliente);
         assertThat(cliente.getId()).isNotNull();
@@ -256,19 +256,19 @@ class BeBuildweek2ApplicationTests {
         fattura.setImporto(1000.0);
         
         Cliente cliente = new Cliente();
-        cliente.setCognome_contatto("Rossi");
-        cliente.setData_inserimento(LocalDate.now());
-        cliente.setData_ultimo_contatto(LocalDate.now());
+        cliente.setCognome("Rossi");
+        cliente.setDataInserimento(LocalDate.now());
+        cliente.setDataUltimoContatto(LocalDate.now());
         cliente.setEmail("cliente@cliente.it");
-        cliente.setEmail_contatto("contatto@cliente.it");
-        cliente.setFatturato_annuale(5000.0);
-        cliente.setNome_contatto("Mario");
-        cliente.setPartita_iva("01234567890");
+        cliente.setEmailContatto("contatto@cliente.it");
+        cliente.setFatturatoAnnuale(5000.0);
+        cliente.setNome("Mario");
+        cliente.setPartitaIva("01234567890");
         cliente.setPec("pec@cliente.it");
-        cliente.setRagione_sociale("Cliente Srl");
+        cliente.setRagioneSociale("Cliente Srl");
         cliente.setTelefono("1234567890");
-        cliente.setTelefono_contatto("0987654321");
-        cliente.setTipo_cliente(CustomerType.PA);
+        cliente.setTelefonoContatto("0987654321");
+        cliente.setTipoCliente(CustomerType.PA);
         
         fattura.setClienti(cliente);
         

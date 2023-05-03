@@ -4,7 +4,10 @@ package com.BEBuildweek2.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,7 +39,6 @@ public class ClientController {
 		@GetMapping(path = "/{id}")
 		public ResponseEntity<?> getClient(@PathVariable(name = "id") Long id){
 			return new ResponseEntity<>(clientService.findById(id), HttpStatus.OK);
-
 		}
 		
 		@PostMapping
@@ -60,5 +62,11 @@ public class ClientController {
 		public ResponseEntity<?> getByPec(@PathVariable(name = "pec") String pec, Pageable pageable) {
 			return new ResponseEntity<>(clientService.findByPec(pec, pageable), HttpStatus.OK);
 		}
+		
+//		@GetMapping(path = "/all")
+//		public ResponseEntity<?> orderByName(Pageable pageable){
+//			return new ResponseEntity<>(clientService.findAllClienti(pageable), HttpStatus.OK);
+//		}
+		
 }
 

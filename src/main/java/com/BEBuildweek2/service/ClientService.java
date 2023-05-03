@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.BEBuildweek2.model.Cliente;
@@ -32,6 +33,9 @@ public class ClientService {
 
 	public Page<Cliente> findAllClienti(Pageable pageable) {
 		return (Page<Cliente>) repo.findAll(pageable);
+	}
+	public Page<Cliente> sortAll(Sort sort) {
+		return (Page<Cliente>) repo.findAll(sort);
 	}
 	
 	public Cliente findById(Long id) {
@@ -72,4 +76,9 @@ public class ClientService {
 	public Page<Cliente> findByPec(String pec, Pageable pageable){
 		return repo.findByPec(pec, pageable);
 	}
+	
+//	public Page<Cliente> orderByName(Pageable pageable) {
+//		return (Page<Cliente>) repo.orderByName(pageable);
+//	}
+
 }
