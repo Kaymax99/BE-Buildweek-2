@@ -80,5 +80,11 @@ public class ClientService {
 //	public Page<Cliente> orderByName(Pageable pageable) {
 //		return (Page<Cliente>) repo.orderByName(pageable);
 //	}
-
+	public Page<Cliente> ascendingName(Pageable pageable) {
+		return repo.ascendingName(pageable);
+	}
+	
+//	public Page<Cliente> filterByFatturato(double d, Pageable pageable) {
+//		return repo.filterByFatturato(d, pageable);
+//	}
 }

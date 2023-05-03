@@ -67,6 +67,12 @@ public class ClientController {
 //		public ResponseEntity<?> orderByName(Pageable pageable){
 //			return new ResponseEntity<>(clientService.findAllClienti(pageable), HttpStatus.OK);
 //		}
+		@GetMapping(path = "/nome")
+		public ResponseEntity<?> ascendingName(Pageable pageable) {
+			return new ResponseEntity<>(clientService.ascendingName(pageable), HttpStatus.OK);
+		}
 		
+//		@GetMapping(path = "/fatturato/{fatturato}")
+//		public ResponseEntity<?> filterByFatturato()
 }
 

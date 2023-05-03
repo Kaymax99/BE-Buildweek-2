@@ -1,6 +1,7 @@
 package com.BEBuildweek2.repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,8 +18,8 @@ public interface ClientDaoRepository extends CrudRepository<Cliente, Long>, Pagi
 	public Cliente findByEmail(String email);
 	public boolean existsByEmail(String email);
 	
-//	@Query(value = "SELECT c FROM be_service_clienti c ORDER BY c.nome ASC")
-//	public Page<Cliente> orderByName(Pageable pageable);
+//	@Query(value = "SELECT c FROM be_service_clienti c WHERE :fatturato = c.fatturatoAnnuale")
+//	public Page<Cliente> filterByFatturato(double fatturato, Pageable pageable);
 	
 //	@Query(value = "SELECT c FROM be_service_clienti c orderby c.fatturatoAnnuale ")
 //	public Page<Cliente> filterByFatturato(Double f, String s);
@@ -27,6 +28,9 @@ public interface ClientDaoRepository extends CrudRepository<Cliente, Long>, Pagi
 //	Data_inserimento
 //	Data_ultimo_contratto
 //	NomeContaining
+	@Query(value = "SELECT c FROM be_service_clienti c ORDER BY c.nome ASC", nativeQuery = true)
+	public Page<Cliente> ascendingName(Pageable pageable);
+	
 	Page<Cliente> findByPec(String pec, Pageable pageable);
 	Iterable<Cliente> findAll(Sort sort);
 	
