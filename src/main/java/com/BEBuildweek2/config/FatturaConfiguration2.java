@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Scope;
 
 
 import com.BEBuildweek2.model.Fattura;
-import com.BEBuildweek2.model.State;
+import com.BEBuildweek2.model.EState;
 import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.model.CustomerType;
 import com.github.javafaker.Faker;
@@ -54,7 +54,7 @@ public class FatturaConfiguration2 {
 		f.setData(LocalDate.now());
 		f.setImporto(1234567890l);
 		f.setNumero(12l);
-		f.setStato(State.ANNULLATA);
+		f.setStatoId(EState.ANNULLATA);
 		return new Fattura();
 	}
 

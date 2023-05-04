@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.model.Fattura;
+import com.BEBuildweek2.model.State;
 import com.BEBuildweek2.service.ClientService;
 import com.BEBuildweek2.service.FattureService;
 
@@ -43,6 +44,15 @@ public class FatturaController {
 			return new ResponseEntity<>(fatturaService.ascendingFatture(pageable), HttpStatus.OK);
 		}
 		
+		@GetMapping(path = "/filter/id/{clienteId}")
+		public ResponseEntity<?> filterByCliente(@PathVariable(name = "clienteId") Long clienteId, Pageable pageable) {
+			return new ResponseEntity<>(fatturaService.filterByCliente(clienteId, pageable), HttpStatus.OK);
+		}
+		
+		@GetMapping(path = "/filter/state/{stato}")
+		public ResponseEntity<?> filterByStato(@PathVariable(name = "stato") int stato, Pageable pageable) {
+			return new ResponseEntity<>(fatturaService.filterByStato(stato, pageable), HttpStatus.OK);
+		}
 //		
 //		@PostMapping
 //		public ResponseEntity<?> createClient(@RequestBody Fattura fattura) {
