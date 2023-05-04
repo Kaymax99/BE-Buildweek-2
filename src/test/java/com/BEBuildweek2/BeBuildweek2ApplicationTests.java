@@ -274,7 +274,7 @@ class BeBuildweek2ApplicationTests {
         
         fattureRepository.save(fattura);
         
-        assertThat(fattureRepository.findById(fattura.getIdFattura())).isNotNull();
+        assertThat(fattureRepository.findById(fattura.getId())).isNotNull();
     }
     
     @Test
