@@ -34,7 +34,7 @@ public class FattureService {
 		return (Page<Fattura>) fattRep.findAll(pageable);
 	}
 	public Fattura updateFatture(Fattura fattura) {
-		if(!fattRep.existsById(fattura.getId())) {
+		if(!fattRep.existsById(fattura.getIdFattura())) {
 			throw new EntityExistsException("Fattura not exists!!!");
 		}
 		fattRep.save(fattura);
