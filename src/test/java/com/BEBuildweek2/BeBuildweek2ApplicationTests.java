@@ -132,7 +132,7 @@ class BeBuildweek2ApplicationTests {
 		cliente.setRagioneSociale("Acme srl");
 		
 		Fattura fattura = Fattura.builder()
-				.clienti(cliente)
+				.cliente(cliente)
 				.anno(2023)
 				.data(LocalDate.now())
 				.importo(1000.0)
@@ -143,8 +143,8 @@ class BeBuildweek2ApplicationTests {
 		assertEquals(1L, fattura.getNumero());
 		assertEquals(2023, fattura.getAnno());
 		assertEquals(1000.0, fattura.getImporto(), 0.001);
-		assertEquals(cliente.getId(), fattura.getClienti().getId());
-		assertEquals(cliente.getRagioneSociale(), fattura.getClienti().getRagioneSociale());
+		assertEquals(cliente.getId(), fattura.getCliente().getId());
+		assertEquals(cliente.getRagioneSociale(), fattura.getCliente().getRagioneSociale());
 	}
     
     //Test per classe AddressDaoRepository
@@ -270,7 +270,7 @@ class BeBuildweek2ApplicationTests {
         cliente.setTelefonoContatto("0987654321");
         cliente.setTipoCliente(CustomerType.PA);
         
-        fattura.setClienti(cliente);
+        fattura.setCliente(cliente);
         
         fattureRepository.save(fattura);
         

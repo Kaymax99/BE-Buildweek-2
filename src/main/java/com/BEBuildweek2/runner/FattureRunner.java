@@ -35,12 +35,13 @@ public class FattureRunner implements ApplicationRunner {
 		 * f.setImporto(1234567890l); f.setNumero(12l); f.setStato(State.ANNULLATA);
 		 */
 		
-		Cliente c = clientService.findById(1l);
-		Fattura f = fatturaService.findById(1l);
-		f.setClienti(c);
-		
-		
-		fatturaService.updateFatture(f);
+		/*
+		 * Cliente c = clientService.findById(1l); Fattura f =
+		 * fatturaService.findById(1l); f.setCliente(c);
+		 * 
+		 * 
+		 * fatturaService.updateFatture(f);
+		 */
 		//fatturaService.createFattura(fatturaBeanProvider.getObject());
 	}
 

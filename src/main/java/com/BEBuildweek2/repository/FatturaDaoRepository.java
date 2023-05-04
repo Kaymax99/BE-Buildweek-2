@@ -27,10 +27,11 @@ public interface FatturaDaoRepository extends CrudRepository<Fattura, Long>, Pag
 //	Data_inserimento
 //	Data_ultimo_contratto
 //	NomeContaining
-	@Query(value = "SELECT c FROM be_service_fatture c ORDER BY c.numero ASC", nativeQuery = true)
+	@Query(value = "SELECT * FROM be_service_fatture f ORDER BY f.numero ASC ", nativeQuery = true)
 	public Page<Fattura> ascendingName(Pageable pageable);
 
 	Iterable<Fattura> findAll(Sort sort);
+	
 	
 
 }

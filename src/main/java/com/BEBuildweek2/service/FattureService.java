@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.model.Fattura;
+import com.BEBuildweek2.repository.ClientDaoRepository;
 import com.BEBuildweek2.repository.FatturaDaoRepository;
 
 import jakarta.persistence.EntityExistsException;
@@ -18,13 +19,17 @@ import jakarta.persistence.EntityNotFoundException;
 public class FattureService {
 	@Autowired
 	private FatturaDaoRepository fattRep;
+	@Autowired
+	private ClientDaoRepository clientRepo;
 	
 	
-	public void salvaFatture(Fattura fattura) {
+	public Fattura salvaFatture(Fattura fattura) {
 		fattRep.save(fattura);
+		return fattura;
 	}
-	
-	
+	public Page<Fattura> ascendingFatture(Pageable pageable){
+		return (Page<Fattura>) fattRep.ascendingName(pageable);
+	}
 	public Page<Fattura> trovaFattureCliente(Pageable pageable){
 		return (Page<Fattura>) fattRep.findAll(pageable);
 	}

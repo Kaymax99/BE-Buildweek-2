@@ -28,7 +28,7 @@ public interface ClientDaoRepository extends CrudRepository<Cliente, Long>, Pagi
 //	Data_inserimento
 //	Data_ultimo_contratto
 //	NomeContaining
-	@Query(value = "SELECT c FROM be_service_clienti c ORDER BY c.nome ASC", nativeQuery = true)
+	@Query(value = "SELECT * FROM be_service_clienti c ORDER BY c.nome ASC", nativeQuery = true)
 	public Page<Cliente> ascendingName(Pageable pageable);
 	
 	Page<Cliente> findByPec(String pec, Pageable pageable);

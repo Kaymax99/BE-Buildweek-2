@@ -7,11 +7,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.model.Fattura;
+import com.BEBuildweek2.service.ClientService;
 import com.BEBuildweek2.service.FattureService;
 
 @RestController
@@ -20,16 +24,25 @@ public class FatturaController {
 		
 		@Autowired 
 		FattureService fatturaService;
+		@Autowired 
+		ClientService clientService;
 		
 		@GetMapping(path = "/all")
 		public ResponseEntity<?> getAllFatture(Pageable pageable){
 			return new ResponseEntity<>(fatturaService.trovaFattureCliente(pageable), HttpStatus.OK);
 		}
 		
-//		@GetMapping(path = "/{id}")
-//		public ResponseEntity<?> getClient(@PathVariable(name = "id") Long id){
-//			return new ResponseEntity<>(fatturaService.findById(id), HttpStatus.OK);
-//		}
+		@PostMapping(path = "/{id}")
+		public ResponseEntity<?> assignCliente(@PathVariable(name = "id") Long id, @RequestBody Fattura f ){
+			Cliente c = clientService.findById(id);
+			f.setCliente(c);
+			return new ResponseEntity<>(fatturaService.salvaFatture(f), HttpStatus.CREATED);
+		}
+		@GetMapping(path = "/ascending")
+		public ResponseEntity<?> getAllFattureAscending(Pageable pageable){
+			return new ResponseEntity<>(fatturaService.ascendingFatture(pageable), HttpStatus.OK);
+		}
+		
 //		
 //		@PostMapping
 //		public ResponseEntity<?> createClient(@RequestBody Fattura fattura) {
