@@ -23,7 +23,7 @@ import com.BEBuildweek2.model.CustomerType;
 import com.BEBuildweek2.model.Fattura;
 import com.BEBuildweek2.repository.AddressDaoRepository;
 import com.BEBuildweek2.repository.ClientDaoRepository;
-import com.BEBuildweek2.repository.FattureRepository;
+import com.BEBuildweek2.repository.FatturaDaoRepository;
 
 @SpringBootTest
 class BeBuildweek2ApplicationTests {
@@ -134,7 +134,7 @@ class BeBuildweek2ApplicationTests {
 		Fattura fattura = Fattura.builder()
 				.clienti(cliente)
 				.anno(2023)
-				.data(Date.valueOf(LocalDate.now()))
+				.data(LocalDate.now())
 				.importo(1000.0)
 				.numero(1L)
 				.build();
@@ -244,7 +244,7 @@ class BeBuildweek2ApplicationTests {
     //Test dei metodi di FattureRepository
     
     @Autowired
-    private FattureRepository fattureRepository;
+    private FatturaDaoRepository fattureRepository;
     
     @Test
     @Rollback(false)
@@ -252,7 +252,7 @@ class BeBuildweek2ApplicationTests {
         Fattura fattura = new Fattura();
         fattura.setAnno(2022);
         fattura.setNumero(1L);
-        fattura.setData(Date.valueOf("2022-05-02"));
+        fattura.setData(LocalDate.now());
         fattura.setImporto(1000.0);
         
         Cliente cliente = new Cliente();

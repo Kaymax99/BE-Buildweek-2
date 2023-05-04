@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Scope;
 
 
 import com.BEBuildweek2.model.Fattura;
+import com.BEBuildweek2.model.State;
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.model.CustomerType;
 import com.github.javafaker.Faker;
 
@@ -42,6 +44,17 @@ public class FatturaConfiguration2 {
 	@Bean("FatturaBean")
 	@Scope("prototype")
 	public Fattura newCustomFattura() {
+		return new Fattura();
+	}
+	
+	@Bean("FatturaBean1")
+	public Fattura newCustomFattura1() {
+		Fattura f = new Fattura();
+		f.setAnno(2023);
+		f.setData(LocalDate.now());
+		f.setImporto(1234567890l);
+		f.setNumero(12l);
+		f.setStato(State.ANNULLATA);
 		return new Fattura();
 	}
 

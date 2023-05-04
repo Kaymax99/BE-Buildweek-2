@@ -16,7 +16,7 @@ import com.BEBuildweek2.service.FattureService;
 
 @RestController
 @RequestMapping("/fatture")
-public class FatturaController2 {
+public class FatturaController {
 		
 		@Autowired 
 		FattureService fatturaService;

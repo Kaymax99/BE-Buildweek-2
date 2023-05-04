@@ -7,8 +7,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.model.Fattura;
 import com.BEBuildweek2.repository.FatturaDaoRepository;
+
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class FattureService {
@@ -20,7 +24,21 @@ public class FattureService {
 		fattRep.save(fattura);
 	}
 	
+	
 	public Page<Fattura> trovaFattureCliente(Pageable pageable){
-		return (Page<Fattura>) fattRep.findAll();
+		return (Page<Fattura>) fattRep.findAll(pageable);
+	}
+	public Fattura updateFatture(Fattura fattura) {
+		if(!fattRep.existsById(fattura.getId())) {
+			throw new EntityExistsException("Fattura not exists!!!");
+		}
+		fattRep.save(fattura);
+		return fattura;
+	}
+	public Fattura findById(Long id) {
+		if(!fattRep.existsById(id)) {
+			throw new EntityNotFoundException("Fattura not exists!!!");
+		}
+		return fattRep.findById(id).get();
 	}
 }

@@ -21,22 +21,26 @@ import com.BEBuildweek2.service.FattureService;
 public class FattureRunner implements ApplicationRunner {
 	
 	
-	@Autowired @Qualifier("FatturaBean") ObjectProvider<Fattura> fatturaBeanProvider;
+	//@Autowired @Qualifier("FatturaBean") ObjectProvider<Fattura> fatturaBeanProvider;
 	
 	@Autowired FattureService fatturaService;
+	@Autowired ClientService  clientService;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		System.out.println("Clients Running...");
 		
-		Fattura f = new Fattura();
-		f.setAnno(2023);
-		f.setData(LocalDate.now());
-		f.setImporto(1234567890l);
-		f.setNumero(12l);
-		f.setStato(State.ANNULLATA);
+		/*
+		 * Fattura f = new Fattura(); f.setAnno(2023); f.setData(LocalDate.now());
+		 * f.setImporto(1234567890l); f.setNumero(12l); f.setStato(State.ANNULLATA);
+		 */
 		
-		fatturaService.salvaFatture(f);
+		Cliente c = clientService.findById(1l);
+		Fattura f = fatturaService.findById(1l);
+		f.setClienti(c);
+		
+		
+		fatturaService.updateFatture(f);
 		//fatturaService.createFattura(fatturaBeanProvider.getObject());
 	}
 
