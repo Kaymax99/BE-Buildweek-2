@@ -8,9 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.BEBuildweek2.model.Cliente;
-import com.BEBuildweek2.model.EState;
 import com.BEBuildweek2.model.Fattura;
-import com.BEBuildweek2.model.State;
 import com.BEBuildweek2.repository.ClientDaoRepository;
 import com.BEBuildweek2.repository.FatturaDaoRepository;
 
@@ -47,14 +45,5 @@ public class FattureService {
 			throw new EntityNotFoundException("Fattura not exists!!!");
 		}
 		return fattRep.findById(id).get();
-	}
-	
-	public Page<Fattura> filterByCliente(Long clienteId, Pageable pageable) {
-		return fattRep.filterByCliente(clienteId, pageable);
-	}
-	
-	public Page<Fattura> filterByStato(int stato, Pageable pageable) {
-		
-		return fattRep.filterByStato(stato, pageable);
 	}
 }
