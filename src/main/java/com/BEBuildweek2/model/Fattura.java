@@ -2,6 +2,7 @@ package com.BEBuildweek2.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,9 +30,10 @@ public class Fattura implements Serializable {
 	private Cliente clienti;
 
 	private int anno;
-	private Date data;
+	private LocalDate data;
 	private double importo;
 	private long numero;
+	private State stato;
 	
 	
 	
