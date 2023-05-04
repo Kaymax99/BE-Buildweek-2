@@ -9,8 +9,6 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -27,19 +25,17 @@ import lombok.NoArgsConstructor;
 public class Fattura implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idFattura;
+	private long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+//    @JoinTable(name = "be_service_clienti_fatture",
+//    joinColumns = @JoinColumn(name = "cliente_id", referencedColumnName = "id"),
+//    inverseJoinColumns = @JoinColumn(name = "fattura_id", referencedColumnName = "id"))
 	private Cliente cliente;
 
 	private int anno;
 	private LocalDate data;
 	private double importo;
 	private long numero;
-	
-	@JoinTable(name = "be_service_stato_fattura",
-            joinColumns = @JoinColumn(name = "stato_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "nome", referencedColumnName = "id")
-    )
-	private EState statoId;
+	private State stato;
 }

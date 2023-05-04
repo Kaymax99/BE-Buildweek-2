@@ -1,6 +1,5 @@
 package com.BEBuildweek2.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.ObjectProvider;
@@ -70,6 +69,9 @@ public class ClientService {
 		repo.save(client);
 		return client;
 	}
+//	public Page<Cliente> findByFatturato_Annuale(double d, Pageable pageable){
+//		return repo.findByFatturato_Annuale(d, pageable);
+//	}
 	
 	public Page<Cliente> findByPec(String pec, Pageable pageable){
 		return repo.findByPec(pec, pageable);
@@ -79,30 +81,10 @@ public class ClientService {
 //		return (Page<Cliente>) repo.orderByName(pageable);
 //	}
 	public Page<Cliente> ascendingName(Pageable pageable) {
-		return repo.orderByName(pageable);
+		return repo.ascendingName(pageable);
 	}
 	
-	public Page<Cliente> ascendingFatturato(Pageable pageable) {
-		return repo.orderByFatturato(pageable);
-	}
-	
-	public Page<Cliente> ascendingDataIns(Pageable pageable) {
-		return repo.orderByDataIns(pageable);
-	}
-	
-	public Page<Cliente> ascendingDataUltimo(Pageable pageable) {
-		return repo.orderByDataUltimo(pageable);
-	}
-	
-	public Page<Cliente> filterByFatturatoUp(double fatturato, Pageable pageable) {
-		return repo.filterByFatturatoUp(fatturato, pageable);
-	}
-	
-	public Page<Cliente> filterByFatturatoDown(double fatturato, Pageable pageable) {
-		return repo.filterByFatturatoDown(fatturato, pageable);
-	}
-	
-	public Page<Cliente> filterByDataIns(LocalDate date, Pageable pageable) {
-		return repo.filterByDataIns(date, pageable);
-	}
+//	public Page<Cliente> filterByFatturato(double d, Pageable pageable) {
+//		return repo.filterByFatturato(d, pageable);
+//	}
 }
