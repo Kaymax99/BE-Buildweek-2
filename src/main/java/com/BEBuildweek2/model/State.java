@@ -24,7 +24,7 @@ public class State {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idState;
     
     @Enumerated(EnumType.STRING)
 	private EState nome;

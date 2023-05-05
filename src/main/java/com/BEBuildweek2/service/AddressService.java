@@ -3,11 +3,13 @@ package com.BEBuildweek2.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.BEBuildweek2.model.Address;
-import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.repository.AddressDaoRepository;
+import com.BEBuildweek2.repository.ClientDaoRepository;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
@@ -17,8 +19,13 @@ import jakarta.persistence.EntityNotFoundException;
 public class AddressService {
 	
 	@Autowired AddressDaoRepository repo;
+	@Autowired
+	private ClientDaoRepository clientRepo;
 
-	public List<Address> getAllAddress() {
+	public Page<Address> getAllAddress(Pageable pageable) {
+		return (Page<Address>) repo.findAll(pageable);
+	}
+	public List<Address> getAllAddressList() {
 		return (List<Address>) repo.findAll();
 	}
 	
@@ -55,6 +62,13 @@ public class AddressService {
 		repo.save(address);
 		return  address;
 	}
+	public Address saveAddress(Address address) {
+		repo.save(address);
+		return  address;
+	}
+
+
+	
 
 
 }

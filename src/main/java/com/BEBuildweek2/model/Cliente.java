@@ -46,9 +46,9 @@ import lombok.NoArgsConstructor;
 	    private String telefonoContatto;
 	    @Enumerated(EnumType.STRING)
 	    private CustomerType tipoCliente;
-	    @OneToOne
+	    @OneToOne(cascade = CascadeType.ALL)
 	    private Address indirizzoSedeLegale;
-	    @OneToOne
+	    @OneToOne(cascade = CascadeType.ALL)
 	    private Address indirizzoSedeOperativa;
 	}
 

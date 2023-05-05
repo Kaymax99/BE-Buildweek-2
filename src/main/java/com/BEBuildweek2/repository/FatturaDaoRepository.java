@@ -34,7 +34,7 @@ public interface FatturaDaoRepository extends CrudRepository<Fattura, Long>, Pag
 	@Query(value = "SELECT * FROM be_service_fatture f WHERE f.cliente_id = :clienteId ORDER BY f.cliente_id ASC", nativeQuery = true)
 	public Page<Fattura> filterByCliente(Long clienteId, Pageable pageable);
 	
-	@Query(value = "SELECT * FROM be_service_fatture f INNER JOIN be_service_stato_fattura s ON f.stato_id = s.id WHERE f.numero = 2", nativeQuery = true)
+	@Query(value = "SELECT * FROM be_service_fatture f INNER JOIN be_service_stato_fattura s ON f.stato_id = s.id_state WHERE f.stato_id = :stato", nativeQuery = true)
 	public Page<Fattura> filterByStato(int stato, Pageable pageable);
 
 	Iterable<Fattura> findAll(Sort sort);

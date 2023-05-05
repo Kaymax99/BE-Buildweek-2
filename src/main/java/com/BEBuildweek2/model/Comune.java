@@ -27,5 +27,4 @@ public class Comune {
 	
 	private String provincia;
 	
-
 }

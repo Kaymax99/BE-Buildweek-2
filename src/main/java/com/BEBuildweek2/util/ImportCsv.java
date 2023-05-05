@@ -8,7 +8,7 @@ import static java.lang.Integer.parseInt;
 
 public class ImportCsv {
     public static void main(String[] args) {
-        String jdbcUrl="jdbc:postgresql://localhost:5432/be_service";
+        String jdbcUrl="jdbc:postgresql://localhost:5432/public.be_service";
         String username="postgres";
         String password="Renoir";
 

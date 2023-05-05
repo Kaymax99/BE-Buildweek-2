@@ -1,5 +1,6 @@
 package com.BEBuildweek2.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,8 @@ public class Address {
 	private int civico;
 	private String localita;
 	private Long cap;
-	private String comune;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	private Comune comune;
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private Cliente client;

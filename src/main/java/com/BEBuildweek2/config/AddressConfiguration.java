@@ -26,8 +26,9 @@ public class AddressConfiguration {
 				.via("Ragione sociale")
 				.civico(12)
 				.localita("narnia")
-				.cap(00000l)
-				.comune("Saga")
+				.cap(00000l)/*
+							 * .comune("Saga")
+							 */
 				.build();
 	}
 	

@@ -1,6 +1,7 @@
 package com.BEBuildweek2.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.ObjectProvider;
@@ -34,6 +35,9 @@ public class ClientService {
 
 	public Page<Cliente> findAllClienti(Pageable pageable) {
 		return (Page<Cliente>) repo.findAll(pageable);
+	}
+	public ArrayList<Cliente> findAllClientiList() {
+		return (ArrayList<Cliente>) repo.findAll();
 	}
 	public Page<Cliente> sortAll(Sort sort) {
 		return (Page<Cliente>) repo.findAll(sort);
@@ -73,6 +77,10 @@ public class ClientService {
 	
 	public Page<Cliente> findByPec(String pec, Pageable pageable){
 		return repo.findByPec(pec, pageable);
+	}
+	
+	public Cliente findByEmail(String email) {
+		return repo.findByEmail(email);
 	}
 	
 //	public Page<Cliente> orderByName(Pageable pageable) {

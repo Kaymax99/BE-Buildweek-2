@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 public class Fattura implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idFattura;
+	private long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Cliente cliente;
