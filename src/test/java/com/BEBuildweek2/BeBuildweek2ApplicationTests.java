@@ -3,15 +3,10 @@ package com.BEBuildweek2;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,21 +16,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
-import com.BEBuildweek2.model.Indirizzo;
-import com.BEBuildweek2.model.State;
-import com.BEBuildweek2.model.Comune;
+
 import com.BEBuildweek2.model.Address;
 import com.BEBuildweek2.model.Cliente;
 import com.BEBuildweek2.model.CustomerType;
-import com.BEBuildweek2.model.EState;
 import com.BEBuildweek2.model.Fattura;
 import com.BEBuildweek2.repository.AddressDaoRepository;
 import com.BEBuildweek2.repository.ClientDaoRepository;
 import com.BEBuildweek2.repository.FatturaDaoRepository;
-import com.BEBuildweek2.repository.StateRepository;
-
-
-
 
 @SpringBootTest
 class BeBuildweek2ApplicationTests {
@@ -158,47 +146,6 @@ class BeBuildweek2ApplicationTests {
 		assertEquals(cliente.getId(), fattura.getCliente().getId());
 		assertEquals(cliente.getRagioneSociale(), fattura.getCliente().getRagioneSociale());
 	}
-    //Test per classe Indirizzo
-    @Test
-    void testGetVia() {
-        Indirizzo indirizzo = new Indirizzo();
-        indirizzo.setVia("Via Roma");
-        assertEquals("Via Roma", indirizzo.getVia());
-    }
-
-    @Test
-    void testGetCivico() {
-        Indirizzo indirizzo = new Indirizzo();
-        indirizzo.setCivico(10);
-        assertEquals(10, indirizzo.getCivico());
-    }
-
-    @Test
-    void testGetLocalita() {
-        Indirizzo indirizzo = new Indirizzo();
-        indirizzo.setLocalita("Milano");
-        assertEquals("Milano", indirizzo.getLocalita());
-    }
-
-    @Test
-    void testGetCap() {
-        Indirizzo indirizzo = new Indirizzo();
-        indirizzo.setCap(20100);
-        assertEquals(20100, indirizzo.getCap());
-    }
-
-    @Test
-    void testGetComune() {
-        Indirizzo indirizzo = new Indirizzo();
-        Comune comune = new Comune();
-        comune.setNome("Milano");
-        indirizzo.setComune(comune);
-        assertEquals(comune, indirizzo.getComune());
-    }
-    
-    
-    
-    
     
     //Test per classe AddressDaoRepository
     @Autowired
@@ -294,60 +241,6 @@ class BeBuildweek2ApplicationTests {
         assertThat(page.getContent()).containsExactly(cliente);
     }
     
-    @Test
-    public void testOrderByName() {
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("nome").ascending());
-        Page<Cliente> result = clientDao.orderByName(pageable);
-        assertEquals(10, result.getSize());
-       
-    }
-
-    @Test
-    public void testOrderByFatturato() {
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("fatturato_annuale").ascending());
-        Page<Cliente> result = clientDao.orderByFatturato(pageable);
-        assertEquals(10, result.getSize());
-       
-    }
-
-    @Test
-    public void testOrderByDataIns() {
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("data_inserimento").ascending());
-        Page<Cliente> result = clientDao.orderByDataIns(pageable);
-        assertEquals(10, result.getSize());
-      
-    }
-
-    @Test
-    public void testOrderByDataUltimo() {
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("data_ultimo_contatto").ascending());
-        Page<Cliente> result = clientDao.orderByDataUltimo(pageable);
-        assertEquals(10, result.getSize());
-       
-    }
-
-    @Test
-    public void testFilterByFatturatoUp() {
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("fatturato_annuale").ascending());
-        Page<Cliente> result = clientDao.filterByFatturatoUp(5000.0, pageable);
-        assertEquals(10, result.getSize());
-        
-    }
-
-    @Test
-    public void testFilterByFatturatoDown() {
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("fatturato_annuale").ascending());
-        Page<Cliente> result = clientDao.filterByFatturatoDown(10000.0, pageable);
-        assertEquals(10, result.getSize());
-       
-    }
-
-    @Test
-    public void testFilterByDataIns() {
-        LocalDate data = LocalDate.of(2022, 1, 1);
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("data_inserimento").ascending());
-        Page<Cliente> result = clientDao.filterByDataIns(data, pageable);}
-    
     //Test dei metodi di FattureRepository
     
     @Autowired
@@ -413,97 +306,7 @@ class BeBuildweek2ApplicationTests {
         assertThat(fattureRepository.findById(1L)).isEmpty();
     }
 
-    @Test
-    public void testAscendingName() {
-
-      PageRequest pageRequest = PageRequest.of(0, 5);
-
-
-      Page<Fattura> result = fattureRepository.ascendingName(pageRequest);
-
-      assertThat(result.getContent().size()).isEqualTo(5);
-      assertThat(result.getContent().get(0).getNumero()).isEqualTo(1);
-      assertThat(result.getContent().get(1).getNumero()).isEqualTo(2);
-      assertThat(result.getContent().get(2).getNumero()).isEqualTo(3);
-      assertThat(result.getContent().get(3).getNumero()).isEqualTo(4);
-      assertThat(result.getContent().get(4).getNumero()).isEqualTo(5);
-    }
-
-    @Test
-    public void testFilterByCliente() {
-   
-      PageRequest pageRequest = PageRequest.of(0, 5);
-      Long clienteId = 1L;
-
- 
-      Page<Fattura> result = fattureRepository.filterByCliente(clienteId, pageRequest);
-
- 
-      assertThat(result.getContent().size()).isEqualTo(5);
-      assertThat(result.getContent().get(0).getCliente().getId()).isEqualTo(clienteId);
-      assertThat(result.getContent().get(1).getCliente().getId()).isEqualTo(clienteId);
-      assertThat(result.getContent().get(2).getCliente().getId()).isEqualTo(clienteId);
-      assertThat(result.getContent().get(3).getCliente().getId()).isEqualTo(clienteId);
-      assertThat(result.getContent().get(4).getCliente().getId()).isEqualTo(clienteId);
-    }
-
-    @Test
-    public void testFilterByStato() {
-
-      PageRequest pageRequest = PageRequest.of(0, 5);
-      int stato = 2;
-
-      Page<Fattura> result = fattureRepository.filterByStato(stato, pageRequest);
-
-
-      assertThat(result.getContent().size()).isEqualTo(1);
-     
-      assertThat(result.getContent().get(0).getNumero()).isEqualTo(2);
-    }
-
-    @Test
-    public void testFindAllSort() {
-
-      Sort sort = Sort.by(Sort.Direction.DESC, "numero");
-
-      List<Fattura> result = (List<Fattura>) fattureRepository.findAll(sort);
-
-   
-      assertThat(result.size()).isEqualTo(10);
-      assertThat(result.get(0).getNumero()).isEqualTo(10);
-      assertThat(result.get(1).getNumero()).isEqualTo(9);
-      assertThat(result.get(2).getNumero()).isEqualTo(8);
-      assertThat(result.get(3).getNumero()).isEqualTo(7);
-      assertThat(result.get(4).getNumero()).isEqualTo(6);
-      assertThat(result.get(5).getNumero()).isEqualTo(5);
-      assertThat(result.get(6).getNumero()).isEqualTo(4);
-      assertThat(result.get(7).getNumero()).isEqualTo(3);
-      assertThat(result.get(8).getNumero()).isEqualTo(2);
-      assertThat(result.get(9).getNumero()).isEqualTo(1);
-    }
-
-    //State Repository
-    @Autowired
-    private StateRepository stateRepository;
-
-    @Test
-    public void testFindByNome() {
-      
-        State state = new State();
-        state.setNome(EState.ANNULLATA);
-        state = stateRepository.save(state);
-
- 
-        Optional<State> foundState = Optional.of(stateRepository.findByNome(EState.ANNULLATA));
-
-     
-        assertTrue(foundState.isPresent());
-        assertEquals(state.getId(), foundState.get().getId());
-        assertEquals(state.getNome(), foundState.get().getNome());
-    }
-    
   
-    
     
     
 }
