@@ -191,7 +191,7 @@ class BeBuildweek2ApplicationTests {
     void testGetComune() {
         Indirizzo indirizzo = new Indirizzo();
         Comune comune = new Comune();
-        comune.setNome("Milano");
+        comune.setComune("Milano");
         indirizzo.setComune(comune);
         assertEquals(comune, indirizzo.getComune());
     }

@@ -24,8 +24,8 @@ public class ImportCsv {
             connection= DriverManager.getConnection(jdbcUrl,username,password);
             connection.setAutoCommit(false);
 
-            String sql="insert into comuni(codiceprovincia,progressivodelcomune,comune,provincia) values(?,?,?,?)";
-            String sql2="insert into province(sigla,provincia,regione) values(?,?,?)";
+            String sql="insert into be_service_comuni(codiceprovincia,progressivodelcomune,comune,provincia) values(?,?,?,?)";
+            String sql2="insert into be_service_province(sigla,provincia,regione) values(?,?,?)";
 
             PreparedStatement statement=connection.prepareStatement(sql);
             PreparedStatement statement2=connection.prepareStatement(sql2);
