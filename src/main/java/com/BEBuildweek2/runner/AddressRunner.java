@@ -2,6 +2,7 @@ package com.BEBuildweek2.runner;
 
 import java.util.ArrayList;
 
+import org.aspectj.weaver.reflect.Java14GenericSignatureInformationProvider;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,8 +33,7 @@ public class AddressRunner implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		System.out.println("Address Running...");
-		updateAllAddress();
-//		addressService.addAddress(addressBeanProvider.getObject());
+//		updateAllAddress();
 	}
 
 	public void updateAllAddress() {
@@ -42,23 +42,21 @@ public class AddressRunner implements ApplicationRunner {
 		listaClienti = (ArrayList<Cliente>) clientService.findAllClientiList();
 
 		
-		for (int i=0; i<listaClienti.size(); i++) {
-			Cliente c = listaClienti.get(i);
-			Address a = c.getIndirizzoSedeLegale();
-			a.setClient(c);
-			addressService.updateAddress(a); 
+		Cliente c;
+		Address a;
+		Address a1;
+		for (int i = 0; i<listaClienti.size(); i++) {
+			c = listaClienti.get(i);
+			a = c.getIndirizzoSedeLegale();
+			a1 = c.getIndirizzoSedeOperativa();
+			if (a != null) {
+				a.setClient(c);
+				addressService.updateAddress(a);
+			}
+			if (a != null) {
+				a1.setClient(c);
+				addressService.updateAddress(a1);
+			}
 		}
-
-//		for (Cliente c1 : listaClienti) {
-//			if (c != null) {
-//
-//				
-//				  Address a2 = c.getIndirizzoSedeOperativa(); a1.setClient(c); a2.setClient(c);
-//				  addressService.updateAddress(a1); addressService.updateAddress(a2);
-//				 
-//			}
-
-//		}
 	}
-
 }

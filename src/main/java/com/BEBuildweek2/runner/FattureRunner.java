@@ -33,7 +33,7 @@ public class FattureRunner implements ApplicationRunner {
 	//@Autowired @Qualifier("FatturaBean") ObjectProvider<Fattura> fatturaBeanProvider;
 	
 	@Autowired FattureService fatturaService;
-	@Autowired ClientService  clientService;
+	@Autowired ClientService clientService;
 	@Autowired StateRepository stateService;
 	
 	private Set<State> states;
@@ -54,8 +54,8 @@ public class FattureRunner implements ApplicationRunner {
 		 * 
 		 * fatturaService.updateFatture(f);
 		 */
-		//fatturaService.createFattura(fatturaBeanProvider.getObject());
-		setStatoFattureDefault();
+		// fatturaService.createFattura(fatturaBeanProvider.getObject());
+		// setStatoFattureDefault();
 	}
 	
 	private void setStatoFattureDefault() {

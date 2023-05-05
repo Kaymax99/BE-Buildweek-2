@@ -10,10 +10,10 @@ public class ImportCsv {
     public static void main(String[] args) {
         String jdbcUrl="jdbc:postgresql://localhost:5432/public.be_service";
         String username="postgres";
-        String password="Renoir";
+        String password="root";
 
-        String filePath="C:\\Back End Epicode\\Bw 2 backend\\BE-Buildweek-2\\comuni-italiani.csv";
-        String filePath2= "C:\\Back End Epicode\\Bw 2 backend\\BE-Buildweek-2\\province-italiane.csv";
+        String filePath="C:\\Users\\brink\\Documents\\GitHub\\BE-Buildweek-2\\comuni-italiani.csv";
+        String filePath2= "C:\\Users\\brink\\Documents\\GitHub\\BE-Buildweek-2\\province-italiane.csv";
 
         int batchSize=20;
 
