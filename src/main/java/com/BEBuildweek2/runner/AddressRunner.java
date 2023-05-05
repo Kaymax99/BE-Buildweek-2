@@ -1,7 +1,6 @@
 package com.BEBuildweek2.runner;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +40,15 @@ public class AddressRunner implements ApplicationRunner {
 
 		ArrayList<Cliente> listaClienti = new ArrayList<Cliente>();
 		listaClienti = (ArrayList<Cliente>) clientService.findAllClientiList();
-		Cliente c = listaClienti.get(0);
-		System.out.println(c); 
-		int i = 0;
 
-		/*
-		 * for (i= 0 ; i<listaClienti.size(); i++) { listaClienti[i]= new Cliente c; }
-		 */
+		
+		for (int i=0; i<listaClienti.size(); i++) {
+			Cliente c = listaClienti.get(i);
+			Address a = c.getIndirizzoSedeLegale();
+			a.setClient(c);
+			addressService.updateAddress(a); 
+		}
+
 //		for (Cliente c1 : listaClienti) {
 //			if (c != null) {
 //

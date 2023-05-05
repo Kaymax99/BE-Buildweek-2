@@ -21,7 +21,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
-import com.BEBuildweek2.model.Indirizzo;
 import com.BEBuildweek2.model.State;
 import com.BEBuildweek2.model.Comune;
 import com.BEBuildweek2.model.Address;
@@ -137,44 +136,7 @@ class BeBuildweek2ApplicationTests {
 		assertEquals(cliente.getId(), fattura.getCliente().getId());
 		assertEquals(cliente.getRagioneSociale(), fattura.getCliente().getRagioneSociale());
 	}
-    //Test per classe Indirizzo
-    @Test
-    void testGetVia() {
-        Indirizzo indirizzo = new Indirizzo();
-        indirizzo.setVia("Via Roma");
-        assertEquals("Via Roma", indirizzo.getVia());
-    }
 
-    @Test
-    void testGetCivico() {
-        Indirizzo indirizzo = new Indirizzo();
-        indirizzo.setCivico(10);
-        assertEquals(10, indirizzo.getCivico());
-    }
-
-    @Test
-    void testGetLocalita() {
-        Indirizzo indirizzo = new Indirizzo();
-        indirizzo.setLocalita("Milano");
-        assertEquals("Milano", indirizzo.getLocalita());
-    }
-
-    @Test
-    void testGetCap() {
-        Indirizzo indirizzo = new Indirizzo();
-        indirizzo.setCap(20100);
-        assertEquals(20100, indirizzo.getCap());
-    }
-
-    @Test
-    void testGetComune() {
-        Indirizzo indirizzo = new Indirizzo();
-        Comune comune = new Comune();
-        comune.setComune("Milano");
-//        indirizzo.setComune(comune);
-//        assertEquals(comune, indirizzo.getComune());
-    }
-    
     
     
     
